@@ -244,7 +244,7 @@ func (w *SPVWallet) EstimateSpendFee(amount int64, feeLevel wallet.FeeLevel) (ui
 	if inval < outval {
 		return 0, errors.New("Error building transaction: inputs less than outputs")
 	}
-	return inval-outval, err
+	return uint64(inval-outval), err
 }
 
 func (w *SPVWallet) GenerateMultisigScript(keys []hd.ExtendedKey, threshold int, timeout time.Duration, timeoutKey *hd.ExtendedKey) (addr btc.Address, redeemScript []byte, err error) {
